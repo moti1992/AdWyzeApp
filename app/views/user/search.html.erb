@@ -1,0 +1,27 @@
+<% provide(:title, "Users") %>
+<br><br>
+<h3>Search users</h3>
+<br><br>
+<div class="row-fluid">
+	<%= form_tag user_path, :method => 'get' do %>
+		<div class="span6">
+	  		<%= text_field_tag :search, params[:search], :class => "span4 search-query", :placeholder => "user id" %>
+	  		<%= submit_tag "Search", :class => "span4 btn" %>
+		</div>
+	<% end %>
+</div>
+<br><br>
+<table class="table table-hover table-bordered table-sort">
+	<thead>
+		<tr style="background-color:#F2F2F2;">
+			<th class="text-center">user id</th>
+			<th class="text-center">name</th>
+		</tr>
+  </thead>
+	<% @user.each do |user_data| %>
+		<tr>
+			<td> <%= user_data.id %> </td>
+			<td> <%= user_data.email %> </td>
+		</tr>
+	<% end -%>
+</table>

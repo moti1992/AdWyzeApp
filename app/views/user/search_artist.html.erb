@@ -1,0 +1,49 @@
+<% provide(:title, "Artist") %>
+<br><br>
+<h3>Search artist</h3>
+
+<% if user_signed_in? %>
+	<li>
+		<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+	</li>
+<% end %>
+
+<br><br>
+<div class="row-fluid">
+	<%= form_tag artist_path, :method => 'get' do %>
+		<div class="span6">
+	  		<%= text_field_tag :search_artist, params[:search_artist], :class => "span4 search-query", :placeholder => "artist name" %>
+	  		<%= submit_tag "Search", :class => "span4 btn" %>
+	  		<%= link_to '<span style="font-size:15px;"> Search history </span>'.html_safe, history_path %>
+	  		<% if !@artists.nil? %>
+	  			<%= link_to '<span style="font-size:15px;"> View similar artists </span>'.html_safe, get_similar_artists_path %>
+	  		<% end -%>	
+		</div>
+	<% end %>
+</div>
+<br><br>
+<h3>Similar artists</h3>
+<table class="table table-hover table-bordered table-sort">
+	<thead>
+		<tr style="background-color:#F2F2F2;">
+			<th class="text-center">name</th>
+			<th class="text-center">playcount</th>
+			<th class="text-center">listeners</th>
+		</tr>
+  </thead>
+  	<% if !@artists.nil? %>
+		<% @artists.each do |artist_data| %>
+			<tr>
+				<td> <%= artist_data['name'] %> </td>
+				<td> <%= artist_data['playcount'] %> </td>
+				<td> <%= artist_data['listeners'] %> </td>
+			</tr>
+		<% end -%>
+	<% else %>
+		<tr>
+			<td> </td>
+			<td> </td>
+			<td> </td>
+		</tr>
+	<% end -%>
+</table>

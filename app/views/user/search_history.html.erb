@@ -1,0 +1,29 @@
+<% provide(:title, "History") %>
+<br><br>
+<h3>Search history</h3>
+
+<% if user_signed_in? %>
+	<li>
+		<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+	</li>
+<% end %>
+
+<br><br>
+<table class="table table-hover table-bordered table-sort">
+	<thead>
+		<tr style="background-color:#F2F2F2;">
+			<th class="text-center">searches</th>
+		</tr>
+  </thead>
+  	<% if !@artist_history.nil? %>
+		<% @artist_history.each do |artist_history| %>
+			<tr>
+				<td> <%= artist_history %> </td>
+			</tr>
+		<% end -%>
+	<% else %>
+		<tr>
+			<td> </td>
+		</tr>
+	<% end -%>
+</table>

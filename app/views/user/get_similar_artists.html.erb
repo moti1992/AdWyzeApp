@@ -1,0 +1,32 @@
+<% provide(:title, "Smilar artists") %>
+<br><br>
+<h3>Similar artists</h3>
+
+<% if user_signed_in? %>
+	<li>
+		<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+	</li>
+<% end %>
+
+<br><br>
+<table class="table table-hover table-bordered table-sort">
+	<thead>
+		<tr style="background-color:#F2F2F2;">
+			<th class="text-center">name</th>
+			<th class="text-center">url</th>
+		</tr>
+  </thead>
+  	<% if !@similar_artists.nil? %>
+		<% @similar_artists.each do |similar_artist| %>
+			<tr>
+				<td> <%= similar_artist['name'] %> </td>
+				<td> <%= similar_artist['url'] %> </td>
+			</tr>
+		<% end -%>
+	<% else %>
+		<tr>
+			<td> </td>
+			<td> </td>
+		</tr>
+	<% end -%>
+</table>
