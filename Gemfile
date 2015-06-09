@@ -53,6 +53,6 @@ group :development do
   gem 'rails_layout'
 end
 
-group :production do
-  gem 'rails_12factor'
-end
+# group :production do
+#   gem 'rails_12factor'
+# end
